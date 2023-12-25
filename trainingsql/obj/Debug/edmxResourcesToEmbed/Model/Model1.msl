@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище kontiKholodowModelContainer" CdmEntityContainer="kontiKholodowEntities">
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="kontiKholodowModel.Products">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Provider">
+      <EntityTypeMapping TypeName="kontiKholodowModel.Provider">
+        <MappingFragment StoreEntitySet="Provider">
+          <ScalarProperty Name="City_provider" ColumnName="City_provider" />
+          <ScalarProperty Name="Phone_number" ColumnName="Phone_number" />
+          <ScalarProperty Name="Company_name" ColumnName="Company_name" />
+          <ScalarProperty Name="idProvider" ColumnName="idProvider" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stock">
+      <EntityTypeMapping TypeName="kontiKholodowModel.Stock">
+        <MappingFragment StoreEntitySet="Stock">
+          <ScalarProperty Name="idWorkers" ColumnName="idWorkers" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="idStock" ColumnName="idStock" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Supplies">
+      <EntityTypeMapping TypeName="kontiKholodowModel.Supplies">
+        <MappingFragment StoreEntitySet="Supplies">
+          <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+          <ScalarProperty Name="idProvider" ColumnName="idProvider" />
+          <ScalarProperty Name="idStock" ColumnName="idStock" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="idSupplies" ColumnName="idSupplies" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="kontiKholodowModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_authorization">
+      <EntityTypeMapping TypeName="kontiKholodowModel.User_authorization">
+        <MappingFragment StoreEntitySet="User_authorization">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Workers">
+      <EntityTypeMapping TypeName="kontiKholodowModel.Workers">
+        <MappingFragment StoreEntitySet="Workers">
+          <ScalarProperty Name="Phone_number" ColumnName="Phone_number" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="idWorkers" ColumnName="idWorkers" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище kontiKholodowModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="idProduct" />
+    </Key>
+    <Property Name="idProduct" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Amount" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Price" Type="money" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Provider">
+    <Key>
+      <PropertyRef Name="idProvider" />
+    </Key>
+    <Property Name="idProvider" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Company_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone_number" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="City_provider" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Stock">
+    <Key>
+      <PropertyRef Name="idStock" />
+    </Key>
+    <Property Name="idStock" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Country" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="idWorkers" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Supplies">
+    <Key>
+      <PropertyRef Name="idSupplies" />
+    </Key>
+    <Property Name="idSupplies" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Weight" Type="int" Nullable="false" />
+    <Property Name="idStock" Type="int" Nullable="false" />
+    <Property Name="idProvider" Type="int" Nullable="false" />
+    <Property Name="idProduct" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="User_authorization">
+    <Key>
+      <PropertyRef Name="idUser" />
+    </Key>
+    <Property Name="idUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Workers">
+    <Key>
+      <PropertyRef Name="idWorkers" />
+    </Key>
+    <Property Name="idWorkers" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Patronymic" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone_number" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Stock_Workers">
+    <End Role="Workers" Type="Self.Workers" Multiplicity="1" />
+    <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Workers">
+        <PropertyRef Name="idWorkers" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="idWorkers" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Supplies_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="Supplies" Type="Self.Supplies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="idProduct" />
+      </Principal>
+      <Dependent Role="Supplies">
+        <PropertyRef Name="idProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Supplies_Provider">
+    <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
+    <End Role="Supplies" Type="Self.Supplies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provider">
+        <PropertyRef Name="idProvider" />
+      </Principal>
+      <Dependent Role="Supplies">
+        <PropertyRef Name="idProvider" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Supplies_Stock">
+    <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+    <End Role="Supplies" Type="Self.Supplies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stock">
+        <PropertyRef Name="idStock" />
+      </Principal>
+      <Dependent Role="Supplies">
+        <PropertyRef Name="idStock" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище kontiKholodowModelContainer">
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Provider" EntityType="Self.Provider" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Supplies" EntityType="Self.Supplies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User_authorization" EntityType="Self.User_authorization" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Workers" EntityType="Self.Workers" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Stock_Workers" Association="Self.FK_Stock_Workers">
+      <End Role="Workers" EntitySet="Workers" />
+      <End Role="Stock" EntitySet="Stock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Supplies_Products" Association="Self.FK_Supplies_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Supplies" EntitySet="Supplies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Supplies_Provider" Association="Self.FK_Supplies_Provider">
+      <End Role="Provider" EntitySet="Provider" />
+      <End Role="Supplies" EntitySet="Supplies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Supplies_Stock" Association="Self.FK_Supplies_Stock">
+      <End Role="Stock" EntitySet="Stock" />
+      <End Role="Supplies" EntitySet="Supplies" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
